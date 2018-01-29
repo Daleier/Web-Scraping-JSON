@@ -49,41 +49,41 @@ public class DownloadImages {
     }
 
     private static void getImages(String src){
+        if (!src.isEmpty()){
+            String folder = null;
 
-        String folder = null;
+            //Exctract the name of the image from the src attribute
+            int indexname = src.lastIndexOf("/");
 
-        //Exctract the name of the image from the src attribute
-        int indexname = src.lastIndexOf("/");
-        
-        /*Comprueba si el caracter / aparece al final del string src. En ese caso,
-        toma el substring que va del segundo carácter hasta el penúltimo (ambos incluidos).
-            "hamburger".substring(4, 8) returns "urge"
-        */
-        if (indexname == src.length()) {
-            src = src.substring(1, indexname);
+            /*Comprueba si el caracter / aparece al final del string src. En ese caso,
+            toma el substring que va del segundo carácter hasta el penúltimo (ambos incluidos).
+                "hamburger".substring(4, 8) returns "urge"
+            */
+            if (indexname == src.length()) {
+                src = src.substring(1, indexname);
+            }
+
+            indexname = src.lastIndexOf("/");
+            String name = src.substring(indexname, src.length());
+            System.out.println(name);
+            try{
+            //Open a URL Stream
+            URL url = new URL(src);
+            InputStream in = url.openStream();
+            name = eliminarCaracteresNoValidos(name);
+            OutputStream out = new BufferedOutputStream(new FileOutputStream(folderPath + name));
+
+            for (int b; (b = in.read()) != -1;) {
+                out.write(b);
+            }
+            out.close();
+            in.close();
+            }catch (MalformedURLException e){
+                System.out.println("URL mal formada");
+            }catch (IOException e){
+                System.out.println("Error I/O");
+            }
         }
-
-        indexname = src.lastIndexOf("/");
-        String name = src.substring(indexname, src.length());
-        System.out.println(name);
-        try{
-        //Open a URL Stream
-        URL url = new URL(src);
-        InputStream in = url.openStream();
-        name = eliminarCaracteresNoValidos(name);
-        OutputStream out = new BufferedOutputStream(new FileOutputStream(folderPath + name));
-
-        for (int b; (b = in.read()) != -1;) {
-            out.write(b);
-        }
-        out.close();
-        in.close();
-        }catch (MalformedURLException e){
-            System.out.println("URL mal formada");
-        }catch (IOException e){
-            System.out.println("Error I/O");
-        }
-
     }
 
     private static String eliminarCaracteresNoValidos(String s) {
