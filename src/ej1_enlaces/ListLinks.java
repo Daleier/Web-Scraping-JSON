@@ -16,7 +16,7 @@ import java.io.IOException;
 public class ListLinks {
     public static void main(String[] args) throws IOException {
         
-        String url = "http://www.lavozdegalicia.com/";
+        String url = "http://www.edu.xunta.gal/portal/";
         print("Fetching %s...", url);
 
         Document doc = Jsoup.connect(url).get();
