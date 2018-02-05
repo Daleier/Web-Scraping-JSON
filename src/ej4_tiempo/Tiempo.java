@@ -14,8 +14,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
+import java.util.Observable;
 
-public class Tiempo implements Runnable {
+public class Tiempo extends Observable implements Runnable {
     
     String ciudad;
     
@@ -62,6 +63,9 @@ public class Tiempo implements Runnable {
             Elements vientos = document.select("div.m_table_weather_day_wrapper div div.m_table_weather_day_wind");
             t.velocidadViento = Integer.parseInt(vientos.get(0).text().split(" ")[1]);
             System.out.println(t.informe());
+            setChanged();
+            notifyObservers(t.informe());
+            clearChanged();
         } catch (IOException e) {
             e.printStackTrace();
         }
