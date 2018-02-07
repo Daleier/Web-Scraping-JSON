@@ -68,6 +68,9 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="hyperlinkUpdate" listener="javax.swing.event.HyperlinkListener" parameters="javax.swing.event.HyperlinkEvent" handler="jEditorPane1HyperlinkUpdate"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jEditorPane1.setEditorKit(jEditorPane1.createEditorKitForContentType(&quot;text/html&quot;));&#xd;&#xa;jEditorPane1.setEditable(false);"/>
           </AuxValues>

@@ -33,8 +33,13 @@ public class Scrap extends Observable implements Runnable {
             Elements titulares = tit.select("a");
             
             for(Element link: titulares){
-                result = result + "<br/><a href=\"https://elpais.com" + link.attr("href").toString()+"\">"+link.text()+ "<a/><br/>";
-                System.out.println("<br/><a href=\"https://elpais.com" + link.attr("href").toString()+">"+link.text()+ "<a/><br/>");
+                if(link.attr("href").toString().startsWith("http")){
+                    result = result + "<br/><a href=\"" + link.attr("href").toString()+"\">"+link.text()+ "<a/><br/>";
+                    System.out.println("<br/><a href=\"" + link.attr("href").toString()+">"+link.text()+ "<a/><br/>");
+                }else{
+                    result = result + "<br/><a href=\"https://elpais.com" + link.attr("href").toString()+"\">"+link.text()+ "<a/><br/>";
+                    System.out.println("<br/><a href=\"https://elpais.com" + link.attr("href").toString()+">"+link.text()+ "<a/><br/>");
+                }
             }
             
             this.setChanged();

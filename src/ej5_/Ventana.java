@@ -5,8 +5,13 @@
  */
 package ej5_;
 
+
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.event.HyperlinkEvent;
 
 /**
  *
@@ -47,6 +52,11 @@ public class Ventana extends javax.swing.JFrame implements Observer {
         jLabel1.setText("TITULARES EL PAIS");
 
         jEditorPane1.setEditable(false);
+        jEditorPane1.addHyperlinkListener(new javax.swing.event.HyperlinkListener() {
+            public void hyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {
+                jEditorPane1HyperlinkUpdate(evt);
+            }
+        });
         jScrollPane1.setViewportView(jEditorPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -75,6 +85,16 @@ public class Ventana extends javax.swing.JFrame implements Observer {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jEditorPane1HyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {//GEN-FIRST:event_jEditorPane1HyperlinkUpdate
+            if (evt.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                try {
+                    Desktop.getDesktop().browse(evt.getURL().toURI());
+                } catch (IOException | URISyntaxException ex) {
+                    // TODO 
+                }
+            }
+    }//GEN-LAST:event_jEditorPane1HyperlinkUpdate
 
     /**
      * @param args the command line arguments
@@ -126,4 +146,5 @@ public class Ventana extends javax.swing.JFrame implements Observer {
             }
         });
     }
+    
 }
