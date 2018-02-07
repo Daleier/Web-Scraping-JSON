@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package ej2_imagenes;
-import com.sun.org.apache.xerces.internal.impl.io.MalformedByteSequenceException;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
