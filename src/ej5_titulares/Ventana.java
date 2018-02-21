@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ej5_;
+package ej5_titulares;
 
 import java.util.Observable;
 import java.util.Observer;
